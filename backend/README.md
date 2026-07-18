@@ -7,15 +7,13 @@ Backend REST API for the Computer Science and Engineering Association (CSEA), CE
 ## Tech Stack
 
 | Layer | Technology |
-|---|---|
+
 | Runtime | Node.js ≥ 18 |
 | Framework | Express.js 4.x |
 | Database | MongoDB (Atlas cloud / local) |
-| ODM | Mongoose 8.x |
+| ODM | Mongoose 8 |
 | Auth | JWT (jsonwebtoken) + bcryptjs |
-| Validation | express-validator 7.x |
-| Logging | morgan |
-| Dev server | nodemon |
+| Validation | express-validator 7 |
 
 ---
 
@@ -26,34 +24,25 @@ Backend REST API for the Computer Science and Engineering Association (CSEA), CE
 
 ### Collections & Relationships
 
-```
 Users  ──(1:N)──  Events     (admin creates events)
 Users  ──(M:N)──  Events     via  Registrations  collection
-```
 
 ### Schema Overview
 
 **User**
-```
 name, email (unique), password (bcrypt), rollNumber (unique),
 department, year (1–4), role (student|admin), timestamps
-```
 
 **Event**
-```
 title, description, category (enum), symposium (SYNC|ABACUS|standalone),
 venue, eventDate, registrationDeadline, maxParticipants, entryFee,
 createdBy (→ User), isActive (soft-delete flag), tags[], timestamps
-```
 
 **Registration**
-```
 event (→ Event), student (→ User), status (confirmed|cancelled),
 registeredAt
 Compound unique index: { event, student }
-```
 
----
 
 ## 🧠 Data Structures & Algorithms Used
 
@@ -68,7 +57,6 @@ Compound unique index: { event, student }
 | **Parallel Promise.all** | `eventController.getAllEvents` | Concurrent DB queries for `find` + `countDocuments` — halves round-trip time vs sequential await |
 | **Soft Delete (flag-based)** | `Event.isActive` | O(1) deactivation; preserves registration history integrity |
 
----
 
 ## Project Structure
 
@@ -108,7 +96,7 @@ backend/
 
 ### Prerequisites
 - Node.js ≥ 18
-- A MongoDB Atlas account (free tier) **or** local MongoDB installed
+- A MongoDB Atlas account **or** local MongoDB installed
 
 ### 1. Clone & Install
 
@@ -119,10 +107,7 @@ npm install
 
 ### 2. Configure Environment
 
-```bash
-# Copy the template
 cp .env.example .env
-```
 
 Edit `.env`:
 
@@ -151,7 +136,6 @@ npm start
 ```
 
 Server starts at: `http://localhost:5000`  
-Health check: `GET http://localhost:5000/api/health`
 
 ### 4. Create an Admin User
 
