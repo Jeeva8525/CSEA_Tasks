@@ -100,10 +100,9 @@ Edit `.env`:
 PORT=5000
 NODE_ENV=development
 
-# MongoDB Atlas (recommended)
 MONGO_URI=mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/csea_events?retryWrites=true&w=majority
 
-# OR local MongoDB fallback
+# OR 
 # MONGO_URI=mongodb://localhost:27017/csea_events
 
 JWT_SECRET=your_long_random_secret_here
@@ -113,7 +112,7 @@ JWT_EXPIRES_IN=1d
 ### 3. Run
 
 ```bash
-# Development (auto-restart on changes)
+# Development 
 npm run dev
 
 # Production
