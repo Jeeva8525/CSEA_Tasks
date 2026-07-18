@@ -51,7 +51,6 @@ const getParticipants = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Event not found.' });
     }
 
-    // Virtual populate: reverse-join without storing participant arrays on Event
     const registrations = await Registration.find({
       event: req.params.id,
       status: 'confirmed',

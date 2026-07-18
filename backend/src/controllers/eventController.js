@@ -3,18 +3,17 @@ const Registration = require('../models/Registration');
 
 // ── GET /api/events ──────────────────────────────────────────────────────────
 // Query params: symposium, category, page, limit
+
 const getAllEvents = async (req, res, next) => {
   try {
     const { symposium, category, page = 1, limit = 10 } = req.query;
 
-    // Build filter object — only active events for public listing
     const filter = { isActive: true };
     if (symposium) filter.symposium = symposium;
     if (category) filter.category = category;
 
     const skip = (Number(page) - 1) * Number(limit);
 
-    // DS: Index on { isActive:1, eventDate:1 } makes this O(log n + k)
     const [events, total] = await Promise.all([
       Event.find(filter)
         .populate('createdBy', 'name email')
