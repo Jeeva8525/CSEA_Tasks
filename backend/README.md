@@ -104,3 +104,23 @@ Registeration
 
 Auth Validation
 ![alt text](screenshots/authValidator.png)
+
+ ----------------------- API CALLS ----------------------
+
+Register student
+![alt text](screenshots/api/registerStudent.png)
+
+Register Admin
+![alt text](screenshots/api/registerAdmin.png)
+
+Student Login
+![alt text](screenshots/api/studentLogin.png)
+
+Admin Login
+![alt text](screenshots/api/adminLogin.png)
+
+Create event by admin
+![alt text](screenshots/api/createEvent.png)
+
+Get all events
+![alt text](screenshots/api/getAllEvents.png)
