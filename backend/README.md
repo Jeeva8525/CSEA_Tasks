@@ -43,21 +43,6 @@ event (→ Event), student (→ User), status (confirmed|cancelled),
 registeredAt
 Compound unique index: { event, student }
 
-
-## 🧠 Data Structures & Algorithms Used
-
-> These are highlighted for evaluation purposes.
-
-| Technique | Where Used | Purpose |
-|---|---|---|
-| **Compound Unique B-tree Index** `{event, student}` | `Registration` model | O(log n) duplicate prevention at DB level — prevents a student registering for the same event twice, even under race conditions |
-| **Adaptive bcrypt hashing** (cost factor 12) | `User` model pre-save hook | Secure, salted password storage; computationally expensive to brute-force |
-| **JWT HMAC-SHA256** | `authController`, `auth` middleware | Stateless, scalable authentication — no server-side session storage needed |
-| **Virtual Populate (reverse-reference join)** | `Event` model | O(n) join on-demand without embedding participant arrays in the Event document, keeping documents lean |
-| **Parallel Promise.all** | `eventController.getAllEvents` | Concurrent DB queries for `find` + `countDocuments` — halves round-trip time vs sequential await |
-| **Soft Delete (flag-based)** | `Event.isActive` | O(1) deactivation; preserves registration history integrity |
-
-
 ## Project Structure
 
 ```
